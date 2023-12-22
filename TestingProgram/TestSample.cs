@@ -35,6 +35,14 @@
         Console.Write("Your answer is: ");
         string answer = Console.ReadLine();
 
+        if (answer != "1" && answer != "2" && answer != "3" && answer != "4")
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Such option does not exist!");
+            Console.ResetColor();
+            throw new Exception("Error");
+        }
+
         if (int.TryParse(answer, out int parsedAnswer))
         {
             return parsedAnswer;
