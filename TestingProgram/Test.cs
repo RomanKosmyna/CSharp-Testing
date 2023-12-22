@@ -1,10 +1,10 @@
 ﻿public class Test
 {
-    private static string? Question { get; set; }
-    private static readonly List<Dictionary<int, string>> listOfOptions = [];
-    private static readonly List<Dictionary<int, string>> listOfCorrectOptions = [];
+    private string? Question { get; set; }
+    private readonly List<Dictionary<int, string>> listOfOptions = [];
+    private readonly List<Dictionary<int, string>> listOfCorrectOptions = [];
 
-    public static void AddQuestion(string question)
+    public void AddQuestion(string question)
     {
         Question = question;
     }
@@ -23,7 +23,7 @@
         listOfCorrectOptions.Add(correctOption);
     }
 
-    public static void RunTest()
+    public bool RunTest()
     {
         LogOptions();
 
@@ -31,10 +31,12 @@
         Console.Write("Your answer is: ");
         var answer = GetAnswer();
 
-        CheckAnswer(answer);
+        var result = CheckAnswer(answer);
+
+        return result;
     }
 
-    private static void LogOptions()
+    private void LogOptions()
     {
         Console.WriteLine(Question);
 
@@ -47,7 +49,7 @@
         }
     }
 
-    private static Dictionary<int, string>? GetAnswer()
+    private Dictionary<int, string>? GetAnswer()
     {
         var answer = Console.ReadLine();
 
@@ -83,14 +85,14 @@
         return selectedOptions;
     }
 
-    public static void CheckAnswer(Dictionary<int, string> answer)
+    public bool CheckAnswer(Dictionary<int, string> answer)
     {
         bool checkAnswer = false;
 
         if (listOfCorrectOptions.Count != answer.Count)
         {
             Logger.IncorrectAnswer(listOfCorrectOptions);
-            return;
+            return checkAnswer;
         }
 
         foreach (var correctOption in listOfCorrectOptions)
@@ -109,10 +111,12 @@
         if (checkAnswer)
         {
             Logger.CorrectAnswer();
+            return checkAnswer;
         }
         else
         {
             Logger.IncorrectAnswer(listOfCorrectOptions);
+            return checkAnswer;
         }
     }
 }

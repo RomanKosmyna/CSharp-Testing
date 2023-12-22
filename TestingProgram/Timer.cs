@@ -1,4 +1,4 @@
-﻿static class Timer
+﻿public static class Timer
 {
     private static System.Threading.Timer timer;
     private static bool isTimerActivated = false;
@@ -11,7 +11,7 @@
             {
                 Console.Clear();
                 isTimerActivated = false;
-            }, null, 4000, Timeout.Infinite);
+            }, null, 2500, Timeout.Infinite);
 
             isTimerActivated = true;
         }
