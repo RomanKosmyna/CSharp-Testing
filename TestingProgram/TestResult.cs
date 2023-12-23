@@ -22,6 +22,6 @@
 
         double percentageRate = ((_index / (double)totalPoints) * 100);
 
-        Console.WriteLine($"Your result is {_index} out of {totalPoints} points, which is {percentageRate}%.");
+        Console.WriteLine($"Your result is {_index} out of {totalPoints} points, which is {percentageRate:F2}%.");
     }
 }
