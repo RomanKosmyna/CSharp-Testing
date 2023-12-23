@@ -1,19 +1,27 @@
 ﻿public class TestResult
 {
-    private static int index = default;
+    private static int _index = default;
 
-    public static void ShowResult(List<bool> listOfUserAnswers)
+    public static void ShowResult(List<Dictionary<int, bool>> listOfUserAnswers, int totalPoints)
     {
         foreach (var answer in listOfUserAnswers)
         {
-            if (answer)
+            foreach (var KeyValuePair in answer)
             {
-                index++;
+                if (KeyValuePair.Key == 1 && KeyValuePair.Value)
+                {
+                    _index++;
+                }
+
+                if (KeyValuePair.Key == 2 && KeyValuePair.Value)
+                {
+                    _index += 2;
+                }
             }
         }
 
-        double percentageRate = (index / 10.0) * 100;
+        double percentageRate = ((_index / (double)totalPoints) * 100);
 
-        Console.WriteLine($"Your result is {index} out of 10, which is {percentageRate}%.");
+        Console.WriteLine($"Your result is {_index} out of {totalPoints} points, which is {percentageRate}%.");
     }
 }

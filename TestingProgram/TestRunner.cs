@@ -5,9 +5,19 @@
 
     private readonly static TestCounter counter = new(listOfTests.Count);
 
-    private readonly static List<bool> listOfUserAnswers = [];
+    private readonly static List<Dictionary<int, bool>> listOfUserAnswers = [];
 
-    public static List<bool> ListOfUserAnswers { get { return listOfUserAnswers; } }
+    public readonly static int totalTestPoints = 0;
+
+    static TestRunner()
+    {
+        foreach (var test in listOfTests)
+        {
+            totalTestPoints += test.PointsForCorrectAnswer;
+        }
+    }
+
+    public static List<Dictionary<int, bool>> ListOfUserAnswers { get { return listOfUserAnswers; } }
 
     public static void Run()
     {

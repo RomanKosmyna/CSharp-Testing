@@ -1,5 +1,6 @@
 ﻿public class Test
 {
+    public int PointsForCorrectAnswer { get; set; }
     private string? Question { get; set; }
     private readonly List<Dictionary<int, string>> listOfOptions = [];
     private readonly List<Dictionary<int, string>> listOfCorrectOptions = [];
@@ -23,7 +24,7 @@
         listOfCorrectOptions.Add(correctOption);
     }
 
-    public bool RunTest()
+    public Dictionary<int, bool> RunTest()
     {
         LogOptions();
 
@@ -49,7 +50,7 @@
         }
     }
 
-    private Dictionary<int, string>? GetAnswer()
+    private Dictionary<int, string> GetAnswer()
     {
         var answer = Console.ReadLine();
 
@@ -85,14 +86,17 @@
         return selectedOptions;
     }
 
-    public bool CheckAnswer(Dictionary<int, string> answer)
+    public Dictionary<int, bool> CheckAnswer(Dictionary<int, string> answer)
     {
         bool checkAnswer = false;
+
+        Dictionary<int, bool> result = [];
 
         if (listOfCorrectOptions.Count != answer.Count)
         {
             Logger.IncorrectAnswer(listOfCorrectOptions);
-            return checkAnswer;
+            result.Add(0, false);
+            return result;
         }
 
         foreach (var correctOption in listOfCorrectOptions)
@@ -111,12 +115,14 @@
         if (checkAnswer)
         {
             Logger.CorrectAnswer();
-            return checkAnswer;
+            result.Add(PointsForCorrectAnswer, true);
+            return result;
         }
         else
         {
             Logger.IncorrectAnswer(listOfCorrectOptions);
-            return checkAnswer;
+            result.Add(0, false);
+            return result;
         }
     }
 }

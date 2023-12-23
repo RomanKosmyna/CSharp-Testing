@@ -9,8 +9,9 @@
     }
 
     var listOfResults = TestRunner.ListOfUserAnswers;
+    var totalPoints = TestRunner.totalTestPoints;
 
-    TestResult.ShowResult(listOfResults);
+    TestResult.ShowResult(listOfResults, totalPoints);
 
     Console.ReadKey();
 }
