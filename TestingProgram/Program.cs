@@ -1,3 +1,17 @@
-﻿TestRunner.Run();
+﻿do
+{
+    string start = Menu.Run();
 
-Console.ReadKey();
+    if (start == "start")
+    {
+        Console.Clear();
+        TestRunner.Run();
+    }
+
+    var listOfResults = TestRunner.ListOfUserAnswers;
+
+    TestResult.ShowResult(listOfResults);
+
+    Console.ReadKey();
+}
+while (true);

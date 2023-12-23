@@ -15,7 +15,7 @@
     {
         if (currentIndex >= 0 && currentIndex < counterList.Count)
         {
-            Console.WriteLine($"Test №{currentIndex} | {currentIndex}/10");
+            Console.WriteLine($"Test №{currentIndex} | {currentIndex}/{counterList.Count - 1}");
             Console.Write("\n");
 
             currentIndex++;
